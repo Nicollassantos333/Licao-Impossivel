@@ -1,3 +1,4 @@
+
 import json
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -5,9 +6,8 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from .models import UserProfile
 
-# Create your views here.
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'base.html')
 
 def userprofile_view(request):
     return HttpResponse("<h1>User Profile</h1>")
