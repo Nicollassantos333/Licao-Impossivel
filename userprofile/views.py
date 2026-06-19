@@ -1,5 +1,7 @@
-from django.shortcuts import render
+# Abra o userprofile/views.py e mude de:
+def home(request):
+    return render(request, 'index.html')
 
-# Create your views here.
+# Para:
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
