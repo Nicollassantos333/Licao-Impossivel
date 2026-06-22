@@ -1,30 +1,143 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lição Impossível</title>
+    <title>{% block title %}API Lição Impossivel{% endblock %}</title>
     <style>
-      body {
-          background: #0f0f0f;
-          color: white;
-          font-family: sans-serif;
-          max-width: 800px;
-          margin: 40px auto;
-          padding: 0 20px;
-      }
-      h1 { color: #facc15; }
-      .card {
-         background: #1f1f1f;
-         border-left: 4px solid #eab308;
-         padding: 15px;
-         margin: 20px 0;
-         border-radius: 0 8px 8px 0;
-      }
+        /* Reset de Estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #030712;
+            color: #e2e8f0;
+            display: flex;
+        }
+
+        /* Sidebar Fixa na Esquerda */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #0b1329;
+            position: fixed;
+            padding: 20px;
+            border-right: 2px solid #1c2541;
+        }
+
+        .sidebar h2, .sidebar h3 {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #1c2541;
+            color: #00b4d8;
+        }
+
+        /* Área de Conteúdo na Direita */
+        .main-content {
+            margin-left: 260px;
+            padding: 40px;
+            width: calc(100% - 260px);
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: #0b1329;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1c2541;
+        }
+
+        h1, h3 {
+            color: #00b4d8;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Código JSON */
+        pre {
+            background-color: #010409;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #1c2541;
+            color: #4ade80;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #1c2541;
+        }
+
+        th {
+            color: #00b4d8;
+            background-color: #1c2541;
+        }
+
+        td {
+            color: #e2e8f0;
+        }
+
+        /* Badges HTTP */
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .get { background-color: #0e6251; color: #2ecc71; }
+        .post { background-color: #78281f; color: #e74c3c; }
+        .put { background-color: #7e5109; color: #f39c12; }
     </style>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+
+    <!-- Sidebar de Navegação Escalável -->
+    <div class="sidebar">
+        <h2 style="color: #4ade80; font-size: 1.1rem; margin-bottom: 5px;">🚀 Lição Impossível</h2>
+        <h3 style="color: #00b4d8; font-size: 1.4rem; margin-bottom: 30px; font-weight: normal;">DevDoc API</h3>
+        
+        <a href="#viacep">🌐 Integração ViaCEP</a>
+        <a href="#usuarios">👥 Gestão de Usuários</a>
+        <a href="#estoque">📦 Controle de Estoque</a>
+        <a href="#equipe">👥 Os 4 Integrantes</a>
+    </div>
+
+    <!-- Bloco onde a home.html injeta o conteúdo -->
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
 </body>
 </html>
