@@ -1,10 +1,4 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Product
-# Register your models here.
-
-admin.site.register(Product)
-=======
 from .models import Produto, HistoricoEstoque
 
 # Exibe a tabela de Produtos no painel administrativo
@@ -20,4 +14,3 @@ class HistoricoEstoqueAdmin(admin.ModelAdmin):
     list_display = ('produto', 'usuario', 'tipo_movimentacao', 'quantidade_alterada', 'data_acao')
     list_filter = ('tipo_movimentacao', 'data_acao')
     search_fields = ('produto__nome', 'usuario__username')
->>>>>>> 9df74ef1e3703ec5705cbba84d8800f663add9d0

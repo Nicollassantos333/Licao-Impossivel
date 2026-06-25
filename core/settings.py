@@ -117,12 +117,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-<<<<<<< HEAD
-=======
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
->>>>>>> 9df74ef1e3703ec5705cbba84d8800f663add9d0
 
 # Configuração do pillow
 MEDIA_URL = '/media/'
