@@ -58,7 +58,7 @@ def userprofile_list(request):
     if request.method == 'POST':
         usuario = request.user
         if usuario.is_staff:  # Apenas usuários com permissão de staff podem acessar a lista completa
-            usuarios = UserProfile.objects.all()
+            usuarios = UserProfile.objects.select_related('user').all() 
             usuarios_data = []
 
             # Resposta para requisição AJAX (JSON)
@@ -81,7 +81,7 @@ def userprofile_list(request):
         }, status=405
     )
 
-@login_required
+
 @csrf_exempt
 def userprofile_register(request):
     if request.method == 'POST':
