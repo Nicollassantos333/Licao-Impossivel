@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}API Lição Impossivel{% endblock %}</title>
+    <title>{% block title %}API Lição Impossível{% endblock %}</title>
     <style>
         /* Reset de Estilos */
         * {
@@ -27,6 +27,7 @@
             position: fixed;
             padding: 20px;
             border-right: 2px solid #1c2541;
+            overflow-y: auto;
         }
 
         .sidebar h2, .sidebar h3 {
@@ -74,6 +75,11 @@
             margin-bottom: 20px;
         }
 
+        code {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
         /* Código JSON */
         pre {
             background-color: #010409;
@@ -83,6 +89,7 @@
             border: 1px solid #1c2541;
             color: #4ade80;
             font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
         }
 
         /* Tabelas */
@@ -114,26 +121,48 @@
             border-radius: 4px;
             font-weight: bold;
             font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 8px;
         }
-        .get { background-color: #0e6251; color: #2ecc71; }
-        .post { background-color: #78281f; color: #e74c3c; }
-        .put { background-color: #7e5109; color: #f39c12; }
+
+        .get { 
+            background-color: #0e6251; 
+            color: #2ecc71; 
+        }
+
+        .post { 
+            background-color: #78281f; 
+            color: #e74c3c; 
+        }
+
+        .put { 
+            background-color: #7e5109; 
+            color: #f39c12; 
+        }
+
+        .delete {
+            background-color: #4a0d0d;
+            color: #ff6b6b;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar de Navegação Escalável -->
+    <!-- Sidebar de Navegação -->
     <div class="sidebar">
-        <h2 style="color: #4ade80; font-size: 1.1rem; margin-bottom: 5px;">🚀 Lição Impossível</h2>
-        <h3 style="color: #00b4d8; font-size: 1.4rem; margin-bottom: 30px; font-weight: normal;">API</h3>
-        
-        <a href="#viacep">🌐 Integração ViaCEP</a>
-        <a href="#usuarios">👥 Gestão de Usuários</a>
-        <a href="#estoque">📦 Controle de Estoque</a>
-        <a href="#equipe">👥 Os 4 Integrantes</a>
+        <h2 style="color: #4ade80; font-size: 1.4rem; margin-bottom: 5px;">🚀 Lição Impossível</h2>
+        <h3 style="color: #00b4d8; font-size: 1.2rem; margin-bottom: 30px; font-weight:bold;">
+            Impossible API 🐧
+        </h3>
+
+        <a href="#register">👤 Cadastro de Usuário</a>
+        <a href="#login">🔐 Login</a>
+        <a href="#profile">🙍 Visualizar Perfil</a>
+        <a href="#list-users">📋 Listar Usuários</a>
+        <a href="#equipe">👥 Developers</a>
     </div>
 
-    <!-- Bloco onde a home.html injeta o conteúdo -->
+    <!-- Conteúdo -->
     <div class="main-content">
         {% block content %}
         {% endblock %}
