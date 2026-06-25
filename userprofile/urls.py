@@ -7,3 +7,6 @@ urlpatterns = [
     path('list/', userprofile_list, name='userprofile_list'),
     path('register/', userprofile_register, name='userprofile_register_view')
 ]
+
+
+urlpatterns = []

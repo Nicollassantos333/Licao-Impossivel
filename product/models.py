@@ -1,15 +1,30 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
-
-class Product (models.Model):
-    code = models.TextField(max_length=20, blank=False, null=False)
-    name = models.TextField(max_length=250, blank=False, null=False)
-    description = models.TextField(max_length=500, blank=True, null=True)
-    picture = models.ImageField(upload_to='products/', blank=True, null=True)
-    qtt = models.IntegerField(blank=False, null=False)
-    unity = models.TextField(max_length=3, blank=False, null=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2, blank=False, null=False)
+# Model para o Controle de Estoque
+class Produto(models.Model):
+    nome = models.CharField(max_length=255, verbose_name="Nome do Produto")
+    codigo_barras = models.CharField(max_length=50, unique=True, verbose_name="Código de Barras")
+    quantidade = models.IntegerField(default=0, verbose_name="Quantidade em Estoque")
+    preco = models.DecimalField(max_length=10, decimal_places=2, max_digits=10, verbose_name="Preço Unitário")
+    data_atualizacao = models.DateTimeField(auto_now=True, verbose_name="Última Atualização")
 
     def __str__(self):
-        return f'{self.code} - {self.name}'
+        return f"{self.nome} ({self.quantidade} un)"
+
+# Model para o Histórico/Logs de Movimentação do Estoque por Usuário
+class HistoricoEstoque(models.Model):
+    METODOS = [
+        ('ENTRADA', 'Entrada de Mercadoria'),
+        ('SAIDA', 'Saída de Mercadoria'),
+        ('AJUSTE', 'Ajuste de Inventário'),
+    ]
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="movimentacoes")
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="Operador")
+    tipo_movimentacao = models.CharField(max_length=10, choices=METODOS)
+    quantidade_alterada = models.IntegerField()
+    motivo = models.TextField(blank=True, null=True)
+    data_acao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.tipo_movimentacao} - {self.produto.nome}"
